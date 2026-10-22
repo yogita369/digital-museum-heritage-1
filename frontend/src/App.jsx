@@ -141,6 +141,7 @@ import {
 } from 'lucide-react'
 import './App.css'
 
+
 const artifacts = [
   {
     id: 1,
@@ -191,6 +192,8 @@ const heritageSites = [
   },
 ]
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL ||'/api' //newly added
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [search, setSearch] = useState('')
@@ -217,8 +220,8 @@ function App() {
   async function loadMuseumData() {
     try {
       const [artifactResponse, siteResponse] = await Promise.all([
-        fetch('/api/artifacts'),
-        fetch('/api/heritage-sites'),
+      fetch(`${API_BASE}/artifacts`), // new
+      fetch(`${API_BASE}/heritage-sites`), // new 
       ])
 
       if (!artifactResponse.ok || !siteResponse.ok) {
