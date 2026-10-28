@@ -200,10 +200,12 @@ function App() {
   const [activeCategory, setActiveCategory] = useState('All')
   const [selectedArtifact, setSelectedArtifact] = useState(null)
   const [artifactsData, setArtifactsData] = useState(artifacts)
-  const [sitesData, setSitesData] = useState(heritageSites)
+   const [sitesData, setSitesData] = useState(heritageSites)
+ 
   const [apiStatus, setApiStatus] = useState('sample')
 
-  const categories = ['All', 'Pottery', 'Sculpture', 'Manuscripts']
+  // const categories = ['All', 'Pottery', 'Sculpture', 'Manuscripts']
+  const categories = ['All', ...new Set(artifactsData.map((a) => a.category))]
 
   const filteredArtifacts = artifactsData.filter((artifact) => {
     const matchesSearch =
